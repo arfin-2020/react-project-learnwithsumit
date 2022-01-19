@@ -1,6 +1,7 @@
+import Videos from "../Videos";
 const Home = () =>{
     return(
-        <div>Home Pages</div>
+        <Videos/>
     )
 }
 
