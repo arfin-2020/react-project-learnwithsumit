@@ -1,5 +1,5 @@
 import classes from './style/TextInput.module.css';
-const TextInput = ({...props, icon}) => {
+const TextInput = ({ icon, ...props}) => {
     return (
         <div className={classes.textInput}>
             <input {...props} />
