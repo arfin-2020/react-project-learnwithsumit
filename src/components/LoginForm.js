@@ -15,7 +15,7 @@ const LoginForm = () => {
 
         <TextInput type="password" placeholder="Enter password" icon="lock" />
 
-        <Button>Submit now</Button>
+        <Button><span>Submit now</span></Button>
         <div className="info">
           Don't have an account? <Link to="/signup">Signup</Link> instead.
         </div>
