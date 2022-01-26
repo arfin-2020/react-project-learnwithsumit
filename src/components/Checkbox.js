@@ -1,6 +1,6 @@
-const Checkbox = ({text, ...props}) =>{
+const Checkbox = ({className,text, ...props}) =>{
     return (
-        <label> 
+        <label className={className}> 
         <input type="checkbox" {...props}/> 
         <span>{text}</span> 
         </label>
