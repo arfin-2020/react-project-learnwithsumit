@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import Button from "./Button";
 import Form from "./Form";
-import classes from "./style/Login.module copy.css";
+import classes from "./style/Login.module.css";
 import TextInput from "./TextInput";
 const LoginForm = () => {
   return (
     <>
-      <Form className={`${classes.login}`}>
+      <Form className={`${classes.login} ${classes.form}`}>
         <TextInput
           type="text"
           placeholder="Enter email"

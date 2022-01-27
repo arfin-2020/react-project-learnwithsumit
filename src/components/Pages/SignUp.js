@@ -4,6 +4,7 @@ import Form from "../Form";
 import Illustration from "../Illustration";
 import classes from "../style/SignUp.module.css";
 import TextInput from "../TextInput";
+
 const SignUp = () => {
   return (
     <>
