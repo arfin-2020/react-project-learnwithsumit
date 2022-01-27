@@ -4,8 +4,8 @@ import "./components/style/App.css";
 function App() {
   return (
     <Layout>
-      {/* <Home/>
-      <SignUp /> */}
+      {/* <Home/>*/}
+      {/* <SignUp />  */}
       <Login />
       {/* <Quiz />
       <Result /> */}

@@ -3,10 +3,11 @@ import Button from "./Button";
 import Form from "./Form";
 import classes from "./style/Login.module.css";
 import TextInput from "./TextInput";
+
 const LoginForm = () => {
   return (
     <>
-      <Form className={`${classes.login} ${classes.form}`}>
+      <Form className={`${classes.login}`}>
         <TextInput
           type="text"
           placeholder="Enter email"

@@ -10,7 +10,7 @@
   width: 90%;
   margin: 2rem auto;
 }
-.form {
+/* .form {
   display: grid;
   grid-template-columns: 1fr;
   padding: 2rem 0;
@@ -29,4 +29,4 @@
   .form {
     grid-template-columns: 1fr;
   }
-}
+} */

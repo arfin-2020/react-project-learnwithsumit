@@ -1,4 +1,4 @@
-import Image from '../assets/images/logo-bg.png';
+import Image from '../assets/images/login.svg';
 import classes from './style/illustration.module.css';
 const IllustrationLogin = () =>{
     return(

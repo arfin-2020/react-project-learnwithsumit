@@ -1,9 +1,9 @@
 import classes from './style/Form.module.css';
 const Form = ({children, className, ...rest}) =>{
     return(
-        <Form className={`${className} ${classes.form}`} action='#' {...rest}>
-            {children}
-        </Form>
+        <form className={`${className} ${classes.form}`} action="#" {...rest}>
+        {children}
+      </form>
     )
 }
 

@@ -1,16 +1,17 @@
-import LoginForm from '../LoginForm';
+import IllustrationLogin from '../../components/IllustrationLogin';
+import LoginForm from '../../components/LoginForm';
 import classes from '../style/Login.module.css';
 const Login = () =>{
     return(
-        <main className={classes.main}>
+        <div className={classes.main}>
         <div className={classes.container}>
         <h1>Login to your account</h1>
           <div className="column">
-          {/* <IllustrationLogin /> */}
+          <IllustrationLogin />
             <LoginForm/>
           </div>
         </div>
-      </main>
+      </div>
     )
 }
 
