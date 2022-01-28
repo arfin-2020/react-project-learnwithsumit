@@ -1,4 +1,4 @@
-// import  Link  from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Button from "./Button";
 import Form from "./Form";
 import classes from "./style/Login.module.css";
@@ -18,7 +18,7 @@ const LoginForm = () => {
 
         <Button><span>Submit now</span></Button>
         <div className="info">
-          {/* Don't have an account? <Link to="/signup">Signup</Link> instead. */}
+          Don't have an account? <Link to="/signup">Signup</Link> instead.
         </div>
       </Form>
     </>
