@@ -18,11 +18,13 @@ const SignUpForm = () => {
   const { signUp } = useAuth();
   const history = useNavigate()
 
+console.log('siup',{signUp})
 
   const handleSubmit = async e => {
+    console.log('click me');
     e.preventDefault();
 
-    if (!password == confirmPassword) {
+    if (!password !== confirmPassword) {
       return setError("dont's match password");
     }
     try {
@@ -38,7 +40,7 @@ const SignUpForm = () => {
     
   };
   return (
-    <>
+ 
       <Form className={`${classes.signup}`} onSubmit={handleSubmit}>
         <TextInput
           type="text"
@@ -77,8 +79,6 @@ const SignUpForm = () => {
           value={isAgree}
           onChange={e => setisAgree(e.target.value)}
         />
-      </Form>
-      
       {error && <p className="error">{error}</p>}
       <div className="info">
         Already have an account? <Link to="/login">Login</Link> instead.
@@ -86,7 +86,9 @@ const SignUpForm = () => {
       <Button type="submit" disabled={loading}>
         <span>Submit now</span>
       </Button>
-    </>
+      </Form>
+      
+   
   );
 };
 
