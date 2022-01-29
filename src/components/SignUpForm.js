@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import Button from "./Button";
 import Checkbox from "./Checkbox";
@@ -13,17 +13,40 @@ const SignUpForm = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
   const [isAgree, setisAgree] = useState("");
-
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState("");
   const { signUp } = useAuth();
+  const history = useNavigate()
+
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+
+    if (!password == confirmPassword) {
+      return setError("dont's match password");
+    }
+    try {
+      setError("");
+      setLoading(true);
+      await signUp(email, password, username);
+      history.push("/");
+    } catch (err) {
+        console.log(err);
+        setLoading(false);
+        setError("failded to create an account!");
+    }
+    
+  };
   return (
     <>
-      <Form className={`${classes.signup}`}>
+      <Form className={`${classes.signup}`} onSubmit={handleSubmit}>
         <TextInput
           type="text"
           placeholder="Enter Name"
           icon="person"
           value={username}
           onChange={e => setUsername(e.target.value)}
+          required
         />
         <TextInput
           type="text"
@@ -31,6 +54,7 @@ const SignUpForm = () => {
           icon="alternate_email"
           value={email}
           onChange={e => setEmail(e.target.value)}
+          required
         />
         <TextInput
           type="password"
@@ -38,6 +62,7 @@ const SignUpForm = () => {
           icon="lock"
           value={password}
           onChange={e => setPassword(e.target.value)}
+          required
         />
         <TextInput
           type="password"
@@ -45,6 +70,7 @@ const SignUpForm = () => {
           icon="lock_clock"
           value={confirmPassword}
           onChange={e => setconfirmPassword(e.target.value)}
+          required
         />
         <Checkbox
           text=" I agree to the Terms &amp; condition"
@@ -52,12 +78,14 @@ const SignUpForm = () => {
           onChange={e => setisAgree(e.target.value)}
         />
       </Form>
-      <Button>
-        <span>Submit now</span>
-      </Button>
+      
+      {error && <p className="error">{error}</p>}
       <div className="info">
         Already have an account? <Link to="/login">Login</Link> instead.
       </div>
+      <Button type="submit" disabled={loading}>
+        <span>Submit now</span>
+      </Button>
     </>
   );
 };
