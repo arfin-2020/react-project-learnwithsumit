@@ -15,23 +15,21 @@ const SignUpForm = () => {
   const [isAgree, setisAgree] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState("");
-  const { signUp } = useAuth();
-  const history = useNavigate()
+  const { signUp} = useAuth();
+  const history = useNavigate();
 
-console.log('siup',{signUp})
 
   const handleSubmit = async e => {
-    console.log('click me');
     e.preventDefault();
-
-    if (!password !== confirmPassword) {
+    // console.log('entered')
+    if (password !== confirmPassword) {
       return setError("dont's match password");
     }
     try {
       setError("");
       setLoading(true);
       await signUp(email, password, username);
-      history.push("/");
+      history("/", { replace: true });
     } catch (err) {
         console.log(err);
         setLoading(false);
@@ -40,7 +38,6 @@ console.log('siup',{signUp})
     
   };
   return (
- 
       <Form className={`${classes.signup}`} onSubmit={handleSubmit}>
         <TextInput
           type="text"
@@ -87,8 +84,7 @@ console.log('siup',{signUp})
         <span>Submit now</span>
       </Button>
       </Form>
-      
-   
+    
   );
 };
 
