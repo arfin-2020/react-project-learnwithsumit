@@ -8,7 +8,8 @@ const app = initializeApp({
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDERID,
   appId: process.env.REACT_APP_ID,
-  measurementId: process.env.REACT_APP_MEASURMENT_ID
+  measurementId: process.env.REACT_APP_MEASURMENT_ID,
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
 
 });
 
