@@ -5,6 +5,7 @@ const UseVideoList = (page) => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState("");
   const [videos, setVideos] = useState([]);
+  const [hasmore, setHasmore] = useState(true);
   
   useEffect(() => {
     const fetchVideo = async () => {
@@ -25,6 +26,7 @@ const UseVideoList = (page) => {
           });
         // setVideos(snapshot.val())
         } else {
+            setHasmore(false);
         }
       } catch (error) {
         console.log(error);
@@ -37,7 +39,8 @@ const UseVideoList = (page) => {
   return {
       loading,
       error,
-      videos
+      videos,
+      hasmore
   }
 };
 
