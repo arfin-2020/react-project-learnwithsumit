@@ -12,9 +12,9 @@ const initialState = null;
 const reducer = (state, action) => {
     switch (action.type) {
         case "questions":
-            action.value.foreach(question => {
+            action.value.forEach(question => {
                 console.log('Al questions from firebase----------', action.value)
-                question.options.foreach(option => {
+                question.options.forEach(option => {
                     option.checked = false;
                 })
             });
@@ -57,12 +57,18 @@ const Quiz = () => {
     }
     return (
         <>
-            <h1>{qna[currentQuestion].title}</h1>
-            <h4>Question can have multiple answers</h4>
-            <h4>Perameter {id}</h4>
-            <Answers options={qna[currentQuestion].options} handleChange={handleAnswerChange} />
-            <ProgressBar />
-            <MiniPlayer />
+            {loading && <div>loading.....</div>}
+            {error && <div>There is an error!</div>}
+            {!error && !loading && qna & qna.length > 0 && (
+                <>
+                    <h1>{qna[currentQuestion].title}</h1>
+                    <h4>Question can have multiple answers</h4>
+                    <h4>Perameter {id}</h4>
+                    <Answers options={qna[currentQuestion].options} handleChange={handleAnswerChange} />
+                    <ProgressBar />
+                    <MiniPlayer />
+                </>
+            )}
         </>
     )
 }
