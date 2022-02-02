@@ -16,10 +16,11 @@ const Videos = () => {
         dataLength={videos.length} 
         next={(e)=> setPage(page + 8)}
         hasMore={hasmore}
+        loader={<h4>Still loading Man! please wait</h4>}
         >
           {videos.map(video => video.noq > 0 ? (
             (
-            <Link to="/quiz" key={video.youtubeID}>
+            <Link to={`/quiz/${video.youtubeID}`} key={video.youtubeID}>
               <Video title={video.title} id={video.youtubeID} noq={video.noq} />
             </Link>
           )
