@@ -10,6 +10,7 @@ const app = initializeApp({
   appId: process.env.REACT_APP_ID,
   measurementId: process.env.REACT_APP_MEASURMENT_ID,
   databaseURL: process.env.REACT_APP_DATABASE_URL,
+  
 
 });
 

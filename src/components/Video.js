@@ -1,6 +1,6 @@
 import classes from "./style/Video.module.css";
 const Video = ({title, id, noq}) => {
-  console.log('result-----',title, id, noq)
+  // console.log('result-----',title, id, noq)
   return (
     <div className={classes.video}>
       <img src={`http://img.youtube.com/vi/${id}/maxresdefault.jpg`} alt={title} />

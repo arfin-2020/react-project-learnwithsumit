@@ -18,7 +18,7 @@ const UseQuestionList = videoId => {
         // request firebase database
         const snapshot = await get(questionQuery);
         setLoading(false);
-        // console.log("Snapshot---------", snapshot.val());
+        console.log("Snapshot---------", snapshot.val());
         if (snapshot.exists()) {
           setQuestions(preQuestions => {
             return [...preQuestions, ...Object.values(snapshot.val())];
