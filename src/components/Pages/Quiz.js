@@ -60,7 +60,20 @@ const Quiz = () => {
     }
 
     // handle when user click the next button to get the next question
-
+    function nexQuestion(){
+        console.log('he clicked me')
+        if(currentQuestion + 1 < questions.length){
+            setcurrentQuestion((prevCurrent)=>prevCurrent + 1);
+        }
+    }
+    // handle when user click the back button to get the previous question
+    function prevQuestion(){
+        if(currentQuestion >= 1  && currentQuestion <= questions.length){
+            setcurrentQuestion((prevQeustion)=>prevQeustion + 1);
+        }
+    }
+    // calculate percentage of progress
+    const percentage = questions.length > 0 ? ((currentQuestion + 1) / (questions.length)) * 100 : 0;
     return (
         <>
             
@@ -83,7 +96,11 @@ const Quiz = () => {
                     options={qna[currentQuestion].options} 
                     handleChange={handleAnswerChange} 
                     />
-                    <ProgressBar />
+                    <ProgressBar 
+                    next={nexQuestion} 
+                    prev={prevQuestion}
+                    progress={percentage}
+                    />
                     <MiniPlayer />
         </>
     )
