@@ -1,10 +1,10 @@
+import _ from 'lodash';
 import { useEffect, useReducer, useState } from "react";
 import { useParams } from "react-router-dom";
 import UseQuestionList from "../../hooks/UseQuestionList";
 import Answers from "../Answers";
 import MiniPlayer from "../MiniPlayer";
 import ProgressBar from "../ProgressBar";
-import _ from 'lodash';
 
 
 const initialState = null;
@@ -36,16 +36,19 @@ const Quiz = () => {
     const { loading, error, questions } = UseQuestionList(id);
     const [currentQuestion, setcurrentQuestion] = useState(0);
 
-    console.log(questions);
+    console.log('Question hai-------',questions);
+    console.log('currentQuestion-------',currentQuestion);
 
     const [qna, dispatch] = useReducer(reducer, initialState);
-    console.log("QNA----------", qna)
+    console.log("QNA----------", qna);
+
     useEffect(() => {
         dispatch({
             type: "questions",
-            value: questions
+            value: questions,
         })
-    }, [questions])
+    }, [questions]);
+   
 
     const handleAnswerChange = (e, index) => {
         dispatch({
@@ -53,22 +56,35 @@ const Quiz = () => {
             questionID: currentQuestion,
             optionIndex: index,
             value: e.target.checked,
-        })
+        });
     }
+
+    // handle when user click the next button to get the next question
+
     return (
         <>
-            {loading && <div>loading.....</div>}
-            {error && <div>There is an error!</div>}
-            {!error && !loading && qna & qna.length > 0 && (
+            
+            {/* {!error && !loading && qna & qna.length > 0 && (
                 <>
                     <h1>{qna[currentQuestion].title}</h1>
                     <h4>Question can have multiple answers</h4>
                     <h4>Perameter {id}</h4>
-                    <Answers options={qna[currentQuestion].options} handleChange={handleAnswerChange} />
+                    <Answers 
+                    options={qna[currentQuestion].options} 
+                    handleChange={handleAnswerChange} 
+                    />
                     <ProgressBar />
                     <MiniPlayer />
                 </>
-            )}
+            )} */}
+            <h4>Question can have multiple answers</h4>
+                    <h4>Perameter {id}</h4>
+                    <Answers 
+                    options={qna[currentQuestion].options} 
+                    handleChange={handleAnswerChange} 
+                    />
+                    <ProgressBar />
+                    <MiniPlayer />
         </>
     )
 }

@@ -10,7 +10,7 @@ const UseQuestionList = videoId => {
     const fetchQuestions = async () => {
       //database related work
       const db = getDatabase();
-      const questionsRef = ref(db, "quiz/" + "videoId/" + "questions");
+      const questionsRef = ref(db, "quiz/" + `${videoId}/` + "questions");
       const questionQuery = query(questionsRef, orderByKey())
       try {
         setLoading(true);
@@ -18,7 +18,7 @@ const UseQuestionList = videoId => {
         // request firebase database
         const snapshot = await get(questionQuery);
         setLoading(false);
-        console.log("Snapshot---------", snapshot.val());
+        // console.log("Snapshot---------", snapshot.val());
         if (snapshot.exists()) {
           setQuestions(preQuestions => {
             return [...preQuestions, ...Object.values(snapshot.val())];
