@@ -1,11 +1,12 @@
+import { getDatabase, ref, set } from 'firebase/database';
 import _ from 'lodash';
 import { useEffect, useReducer, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { useAuth } from '../../Context/AuthContext';
 import UseQuestionList from "../../hooks/UseQuestionList";
 import Answers from "../Answers";
 import MiniPlayer from "../MiniPlayer";
 import ProgressBar from "../ProgressBar";
-
 
 const initialState = null;
 
@@ -35,13 +36,14 @@ const Quiz = () => {
     const { id } = useParams();
     const { loading, error, questions } = UseQuestionList(id);
     const [currentQuestion, setcurrentQuestion] = useState(0);
-
+    const history = useNavigate()
     console.log('Question hai-------',questions);
     console.log('currentQuestion-------',currentQuestion);
 
     const [qna, dispatch] = useReducer(reducer, initialState);
     console.log("QNA----------", qna);
-
+    const {currentUser} = useAuth();
+    console.log('current User', currentUser)
     useEffect(() => {
         dispatch({
             type: "questions",
@@ -60,6 +62,7 @@ const Quiz = () => {
     }
 
     // handle when user click the next button to get the next question
+
     function nexQuestion(){
         console.log('he clicked me')
         if(currentQuestion + 1 < questions.length){
@@ -72,8 +75,28 @@ const Quiz = () => {
             setcurrentQuestion((prevQeustion)=>prevQeustion + 1);
         }
     }
+
+    // submit function
+
+   async function submit(){
+    const {uid} = currentUser;
+    const db = getDatabase();
+    const resultRef = ref(db, `result/${uid}`);
+    await set(resultRef,{
+        [id] : qna
+    });
+    history({
+        pathname: `/result/${id}`,
+        replace: true ,
+        state: {
+          qna,
+        },
+      });
+    }
+
     // calculate percentage of progress
     const percentage = questions.length > 0 ? ((currentQuestion + 1) / (questions.length)) * 100 : 0;
+
     return (
         <>
             
@@ -96,10 +119,8 @@ const Quiz = () => {
                     options={qna[currentQuestion].options} 
                     handleChange={handleAnswerChange} 
                     />
-                    <ProgressBar 
-                    next={nexQuestion} 
-                    prev={prevQuestion}
-                    progress={percentage}
+                    <ProgressBar next={nexQuestion} prev={prevQuestion} progress={percentage}
+                    submit={submit}    
                     />
                     <MiniPlayer />
         </>

@@ -46,7 +46,7 @@ function App() {
             {/* nested routing */}
 
             <Route path="/*" element={<PrivateOutlet />}>
-              <Route path="result" element={<Result />} />
+              <Route path="result/:id" element={<Result />} />
               <Route path="quiz/:id" element={<Quiz />} />
             </Route>
             <Route exact path="/:pageName" element={<PageNotFound />} />
