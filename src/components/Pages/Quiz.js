@@ -72,7 +72,7 @@ const Quiz = () => {
     // handle when user click the back button to get the previous question
     function prevQuestion(){
         if(currentQuestion >= 1  && currentQuestion <= questions.length){
-            setcurrentQuestion((prevQeustion)=>prevQeustion + 1);
+            setcurrentQuestion((prevCurrent)=>prevCurrent - 1);
         }
     }
 
