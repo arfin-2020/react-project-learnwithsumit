@@ -44,6 +44,7 @@ const Quiz = () => {
     console.log("QNA----------", qna);
     const { currentUser } = useAuth();
     console.log('current User', currentUser)
+
     useEffect(() => {
         dispatch({
             type: "questions",
@@ -101,7 +102,7 @@ const Quiz = () => {
         <>
             <h1>{qna[currentQuestion]?.title}</h1>
             <h4>Question can have multiple answers</h4>
-            <h4>Perameter {id}</h4>
+         
             <Answers
                 options={qna[currentQuestion]?.options}
                 handleChange={handleAnswerChange}
