@@ -6,6 +6,7 @@ const Answers = ({ options = [], handleChange }) => {
             {
                 options.map((option, index) =>
                     <Checkbox
+                        key={index}
                         text={option.title}
                         value={index}
                         className={classes.answer}

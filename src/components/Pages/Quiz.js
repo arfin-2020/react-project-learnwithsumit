@@ -14,7 +14,7 @@ const reducer = (state, action) => {
     switch (action.type) {
         case "questions":
             action.value.forEach(question => {
-                console.log('Al questions from firebase----------', action.value)
+                // console.log('Al questions from firebase----------', action.value)
                 question.options.forEach(option => {
                     option.checked = false;
                 })
@@ -24,7 +24,7 @@ const reducer = (state, action) => {
         case "answer":
             //This question is not come from firebase it's just a copy questions current state;
             const questions = _.cloneDeep(state);
-            console.log('Al questions from current state ----------', questions);
+            // console.log('Al questions from current state ----------', questions);
             questions[action.questionID].options[action.optionIndex].checked = action.value;
             return questions;
         default:
@@ -34,16 +34,16 @@ const reducer = (state, action) => {
 
 const Quiz = () => {
     const { id } = useParams();
-    const { loading, error, questions } = UseQuestionList(id);
+    const {questions } = UseQuestionList(id);
     const [currentQuestion, setcurrentQuestion] = useState(0);
     const history = useNavigate()
-    console.log('Question hai-------', questions);
-    console.log('currentQuestion-------', currentQuestion);
+    // console.log('Question hai-------', questions);
+    // console.log('currentQuestion-------', currentQuestion);
 
     const [qna, dispatch] = useReducer(reducer, initialState);
     console.log("QNA----------", qna);
     const { currentUser } = useAuth();
-    console.log('current User', currentUser)
+    // console.log('current User', currentUser)
 
     useEffect(() => {
         dispatch({
@@ -86,13 +86,15 @@ const Quiz = () => {
         await set(resultRef, {
             [id]: qna
         });
+        console.log("QNA----submission-------", qna);
         history({
             pathname: `/result/${id}`,
             replace: true,
-            state: {
-                qna,
-            },
+            state :{qna}
+            
+            // state:{ from: "the-page-id" }
         });
+       
     }
 
     // calculate percentage of progress
