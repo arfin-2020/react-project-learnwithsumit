@@ -37,6 +37,7 @@ const Quiz = () => {
     const {questions } = UseQuestionList(id);
     const [currentQuestion, setcurrentQuestion] = useState(0);
     const history = useNavigate()
+    console.log('history------',history)
     // console.log('Question hai-------', questions);
     // console.log('currentQuestion-------', currentQuestion);
 
@@ -86,13 +87,11 @@ const Quiz = () => {
         await set(resultRef, {
             [id]: qna
         });
-        console.log("QNA----submission-------", qna);
+        // console.log("QNA----submission-------", qna);
         history({
             pathname: `/result/${id}`,
             replace: true,
-            state :{qna}
-            
-            // state:{ from: "the-page-id" }
+            state : qna
         });
        
     }
@@ -108,11 +107,12 @@ const Quiz = () => {
             <Answers
                 options={qna[currentQuestion]?.options}
                 handleChange={handleAnswerChange}
+                input
             />
             <ProgressBar next={nexQuestion} prev={prevQuestion} progress={percentage}
                 submit={submit}
             />
-            <MiniPlayer />
+            <MiniPlayer id={id} />
         </>
     )
 }
