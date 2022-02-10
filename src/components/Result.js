@@ -7,9 +7,9 @@ const Result = () => {
   const { id } = useParams();
   const location = useLocation();
 
-  const { state } = location;
-  const { qna } = state || {};
-  // console.log(qna);
+  const  qna  = location.state;
+  
+  console.log('qna-------location----',qna);
 
   const { error, loading, answers } = UseAnswersList(id);
   console.log("answers---------", answers, loading, error);

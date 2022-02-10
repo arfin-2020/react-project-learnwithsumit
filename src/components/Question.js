@@ -7,7 +7,7 @@ const Question = ({answers=[]}) =>{
               <span className="material-icons-outlined"> help_outline </span>
              {answer.title}
             </div>
-            <Answers options={answer.options} input='false'/>
+            <Answers options={answer.options} input={false}/>
         </div>
     ))
 }

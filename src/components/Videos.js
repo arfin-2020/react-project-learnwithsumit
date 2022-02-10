@@ -22,9 +22,9 @@ const Videos = () => {
               <Link
                 to={{
                   pathname: `/quiz/${video.youtubeID}`,
-                  state: {
-                    videoTitle: video.title,
-                  },
+                  // state: {
+                  //   videoTitle: video.title,
+                  // },
                 }}
                 key={video.youtubeID}
               >

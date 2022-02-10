@@ -8,7 +8,7 @@ import Answers from "../Answers";
 import MiniPlayer from "../MiniPlayer";
 import ProgressBar from "../ProgressBar";
 
-const initialState = '0' || null;
+const initialState = '0' 
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -36,8 +36,8 @@ const Quiz = () => {
     const { id } = useParams();
     const {questions } = UseQuestionList(id);
     const [currentQuestion, setcurrentQuestion] = useState(0);
-    const history = useNavigate()
-    console.log('history------',history)
+    const navigate = useNavigate()
+    // console.log('history------',history)
     // console.log('Question hai-------', questions);
     // console.log('currentQuestion-------', currentQuestion);
 
@@ -88,11 +88,11 @@ const Quiz = () => {
             [id]: qna
         });
         // console.log("QNA----submission-------", qna);
-        history({
-            pathname: `/result/${id}`,
-            replace: true,
-            state : qna
-        });
+        
+        // navigate("/users/123", { state: partialUser });
+        navigate(`/result/${id}`,
+            {state : qna}
+        );
        
     }
 

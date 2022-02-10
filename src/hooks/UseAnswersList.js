@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 
 const UseAnswersList = videoId => {
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState("");
+  const [loading, setLoading] = useState(true);
   const [answers, setAnswers] = useState([]);
 
   useEffect(() => {
     const fetchAnswers = async () => {
       //database related work
       const db = getDatabase();
-      const answerRef = ref(db, "answers/" + `${videoId}/` + "questions");
+      const answerRef = ref(db, "answers/" + videoId + "/questions");
       const answerQuery = query(answerRef, orderByKey())
       try {
         setLoading(true);
@@ -31,9 +31,9 @@ const UseAnswersList = videoId => {
         setError("Fetching failed!");
       }
     };
-    setTimeout(() => {
+    
       fetchAnswers();
-    }, 1500);
+   
   }, [videoId]);
   return {
     loading,
