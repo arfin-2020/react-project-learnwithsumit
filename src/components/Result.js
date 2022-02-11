@@ -9,10 +9,10 @@ const Result = () => {
 
   const  qna  = location.state;
   
-  console.log('qna-------location----',qna);
+//   console.log('qna-------location----',qna);
 
   const { error, loading, answers } = UseAnswersList(id);
-  console.log("answers---------", answers, loading, error);
+//   console.log("answers---------", answers, loading, error);
 
   function calculate() {
     let score = 0;

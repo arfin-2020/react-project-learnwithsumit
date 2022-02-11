@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import ReactPlayer from "react-player";
 import classes from "./style/MiniPlayer.module.css";
-const MiniPlayer = ({ id }) => {
+const MiniPlayer = ({ id, videoTitle }) => {
   const ButtonRef = useRef();
   const [status, setStatus] = useState(false);
   const videoUrl = `https://www.youtube.com/watch?v=${id}`;
@@ -39,7 +39,7 @@ const MiniPlayer = ({ id }) => {
         controls
         // light
       />
-      <p>#23 React Hooks Bangla - React useReducer hook Bangla</p>
+      <p>{videoTitle}</p>
     </div>
   );
 };
